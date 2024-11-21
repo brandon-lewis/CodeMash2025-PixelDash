@@ -14,3 +14,19 @@ func _physics_process(delta: float) -> void:
 	# CharacterBody2D or RigidBody2D, it will also be affected by the motion of the other body. You
 	# can use this to make moving and rotating platforms, or to make nodes push other nodes.
 	move_and_slide()
+	
+	# If this node's X velocity is negative, we're moving left and should flip the sprite.
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	elif velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+	
+	# A negative y velocity means this node is moving UP, so we play the jump animation.
+	if velocity.y < 0:
+		$AnimatedSprite2D.play("jump")
+	elif velocity.y > 0:
+		$AnimatedSprite2D.play("fall")
+	elif velocity.x != 0:
+		$AnimatedSprite2D.play("run")
+	else:
+		$AnimatedSprite2D.play("idle")
