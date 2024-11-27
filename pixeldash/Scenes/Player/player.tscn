@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://bspdjiiaafuvy"]
+[gd_scene load_steps=34 format=3 uid="uid://bspdjiiaafuvy"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_283o7"]
 [ext_resource type="Texture2D" uid="uid://tl2g675dn3v5" path="res://Assets/Art/Pixel Adventure 1/Main Characters/Mask Dude/Fall (32x32).png" id="3_21lln"]
 [ext_resource type="Texture2D" uid="uid://b7kakw0p8ye8v" path="res://Assets/Art/Pixel Adventure 1/Main Characters/Mask Dude/Idle (32x32).png" id="4_307g6"]
 [ext_resource type="Texture2D" uid="uid://bx6cbkt01bmox" path="res://Assets/Art/Pixel Adventure 1/Main Characters/Mask Dude/Jump (32x32).png" id="5_doxrh"]
 [ext_resource type="Texture2D" uid="uid://xcei8tv0i0oi" path="res://Assets/Art/Pixel Adventure 1/Main Characters/Mask Dude/Run (32x32).png" id="6_f0rkv"]
+[ext_resource type="AudioStream" uid="uid://4qu5ndlkbt1u" path="res://Assets/Audio/jdwasabi_Sounds/Jump 1.wav" id="6_h3yod"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6epth"]
 
@@ -207,7 +208,6 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(5, 5)
 script = ExtResource("1_283o7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -216,3 +216,6 @@ shape = SubResource("CapsuleShape2D_6epth")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6hqts")
 animation = &"run"
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_h3yod")

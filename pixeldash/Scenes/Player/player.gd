@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
-const BASE_MOVE_SPEED := 750
+const BASE_MOVE_SPEED := 250
+const JUMP_FORCE := Globals.GRAVITY * 14
 
 func _physics_process(delta: float) -> void:
-	# read Input action strengths to easily get the horizontal and vertical input
-	var input_vector := Input.get_vector("left", "right", "up", "down")
+	# Shorthand for getting the right (positive) input minus the left (negative) input
+	var input_vector := Input.get_axis("left", "right")
 	
 	# The input vector returns 0 for "not pressed" and 1 for "pressed", so multiply by move speed.
-	velocity = input_vector * BASE_MOVE_SPEED
+	velocity.x = input_vector * BASE_MOVE_SPEED
+	velocity.y += Globals.GRAVITY
 	
 	# Moves the body based on velocity. If the body collides with another, it will slide along the
 	# other body (by default only on floor) rather than stop immediately. If the other body is a
@@ -30,3 +32,8 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.play("run")
 	else:
 		$AnimatedSprite2D.play("idle")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("action") and is_on_floor():
+		velocity.y -= JUMP_FORCE
+		$JumpSound.play()
