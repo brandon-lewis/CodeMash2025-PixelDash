@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://e3kixtkuqvn0"]
+
+[ext_resource type="Texture2D" uid="uid://dtu4y1ajjy1a5" path="res://Assets/Art/Pixel Adventure 1/Items/Fruits/Kiwi.png" id="1_bvva1"]
+[ext_resource type="Script" path="res://Scenes/HUD/hud.gd" id="1_wxhxa"]
+[ext_resource type="Texture2D" uid="uid://c4dywypo8rt0e" path="res://Assets/Art/Pixel Adventure 1/Items/Fruits/Pineapple.png" id="2_0x3sh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5kso"]
+atlas = ExtResource("1_bvva1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyrg1"]
+atlas = ExtResource("2_0x3sh")
+region = Rect2(0, 0, 32, 32)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_wxhxa")
+
+[node name="KiwiPanel" type="Panel" parent="."]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 80.0
+offset_bottom = 104.0
+
+[node name="TextureRect" type="TextureRect" parent="KiwiPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 32.0
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_a5kso")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="KiwiPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -23.0
+offset_right = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "10/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PineapplePanel" type="Panel" parent="."]
+offset_left = 96.0
+offset_top = 32.0
+offset_right = 144.0
+offset_bottom = 104.0
+
+[node name="TextureRect" type="TextureRect" parent="PineapplePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 32.0
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_eyrg1")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="PineapplePanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -23.0
+offset_right = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "10/10"
+horizontal_alignment = 1
+vertical_alignment = 1

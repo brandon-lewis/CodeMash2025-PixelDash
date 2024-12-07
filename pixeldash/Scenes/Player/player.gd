@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 const BASE_MOVE_SPEED := 250
@@ -37,3 +38,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action") and is_on_floor():
 		velocity.y -= JUMP_FORCE
 		$JumpSound.play()
+
+
+func collect_fruit(fruit:String) -> void:
+	print("Player collected %s" % fruit)

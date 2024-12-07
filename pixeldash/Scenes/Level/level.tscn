@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=4 uid="uid://d0jtwnxh7be6b"]
+[gd_scene load_steps=12 format=4 uid="uid://d0jtwnxh7be6b"]
 
 [ext_resource type="AudioStream" uid="uid://cwqsx06cpbb2q" path="res://Assets/Audio/Casual Game Vol 2/Track 7 (Panorama).wav" id="1_41ue2"]
 [ext_resource type="Texture2D" uid="uid://b2fg52nxe1owk" path="res://Assets/Art/Pixel Adventure 1/Terrain/Terrain (16x16).png" id="1_46btl"]
 [ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_kqnx6"]
 [ext_resource type="Texture2D" uid="uid://dvcdw3gysh5de" path="res://Assets/Art/Pixel Adventure 1/Background/Gray.png" id="1_v0gxb"]
+[ext_resource type="PackedScene" uid="uid://e3kixtkuqvn0" path="res://Scenes/HUD/hud.tscn" id="2_ogogy"]
 [ext_resource type="PackedScene" uid="uid://bspdjiiaafuvy" path="res://Scenes/Player/player.tscn" id="2_t47n6"]
 [ext_resource type="PackedScene" uid="uid://ynglj8no2lpi" path="res://Scenes/Trampoline/trampoline.tscn" id="5_evdvf"]
 [ext_resource type="PackedScene" uid="uid://cdfd1ampgss3u" path="res://Scenes/MushroomEnemy/mushroom_enemy.tscn" id="6_sqtae"]
+[ext_resource type="PackedScene" uid="uid://dbaccdtawfut4" path="res://Scenes/Fruit/fruit.tscn" id="8_qblhg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ppjvi"]
 texture = ExtResource("1_46btl")
@@ -578,6 +580,10 @@ sources/0 = SubResource("TileSetAtlasSource_ppjvi")
 [node name="Level" type="Node2D"]
 script = ExtResource("1_kqnx6")
 
+[node name="HUD" parent="." instance=ExtResource("2_ogogy")]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
 [node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_41ue2")
 volume_db = -10.0
@@ -599,15 +605,12 @@ tile_set = SubResource("TileSet_5bplv")
 [node name="Trampoline" parent="." instance=ExtResource("5_evdvf")]
 position = Vector2(128, 144)
 
-[node name="Trampoline3" parent="." instance=ExtResource("5_evdvf")]
-position = Vector2(304, 176)
-
 [node name="Trampoline2" parent="." instance=ExtResource("5_evdvf")]
 position = Vector2(336, 176)
 bounce_strength = 725
 
 [node name="MushroomEnemy" parent="." instance=ExtResource("6_sqtae")]
-position = Vector2(272, 160)
+position = Vector2(304, 160)
 
 [node name="Player" parent="." instance=ExtResource("2_t47n6")]
 position = Vector2(76, 47)
@@ -619,5 +622,29 @@ limit_top = 0
 limit_right = 2048
 limit_bottom = 1536
 editor_draw_limits = true
+
+[node name="FruitContainer" type="Node" parent="."]
+
+[node name="Fruit" parent="FruitContainer" instance=ExtResource("8_qblhg")]
+position = Vector2(216, 192)
+
+[node name="Fruit3" parent="FruitContainer" instance=ExtResource("8_qblhg")]
+position = Vector2(216, 216)
+
+[node name="Fruit4" parent="FruitContainer" instance=ExtResource("8_qblhg")]
+position = Vector2(336, 88)
+fruit = "Pineapple"
+
+[node name="Fruit5" parent="FruitContainer" instance=ExtResource("8_qblhg")]
+position = Vector2(336, 64)
+fruit = "Pineapple"
+
+[node name="Fruit6" parent="FruitContainer" instance=ExtResource("8_qblhg")]
+position = Vector2(352, 48)
+fruit = "Pineapple"
+
+[node name="Fruit7" parent="FruitContainer" instance=ExtResource("8_qblhg")]
+position = Vector2(376, 48)
+fruit = "Pineapple"
 
 [connection signal="finished" from="LevelMusic" to="." method="_on_level_music_finished"]
