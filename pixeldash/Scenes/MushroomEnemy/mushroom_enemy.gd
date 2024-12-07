@@ -27,3 +27,13 @@ func _on_bounce_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_
 	if body is CharacterBody2D:
 		$BounceAudioStream.play()
 		body.velocity.y = -BOUNCE_STRENGTH
+
+
+func _on_left_hit_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body is Player:
+		body.take_damage(1)
+
+
+func _on_right_hit_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body is Player:
+		body.take_damage(1)

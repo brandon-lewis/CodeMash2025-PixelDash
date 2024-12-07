@@ -237,11 +237,11 @@ height = 22.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mlxi0"]
 radius = 2.0
-height = 14.0
+height = 6.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_shlib"]
 radius = 2.0
-height = 14.0
+height = 6.0
 
 [node name="MushroomEnemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -276,7 +276,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHitArea"]
-position = Vector2(-11, 8)
+position = Vector2(-11, 12)
 shape = SubResource("CapsuleShape2D_mlxi0")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 metadata/_edit_lock_ = true
@@ -285,7 +285,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightHitArea"]
-position = Vector2(11, 8)
+position = Vector2(11, 12)
 shape = SubResource("CapsuleShape2D_shlib")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 metadata/_edit_lock_ = true
@@ -295,3 +295,5 @@ position = Vector2(-9, 14)
 target_position = Vector2(0, 12)
 
 [connection signal="body_shape_entered" from="BounceArea" to="." method="_on_bounce_area_body_shape_entered"]
+[connection signal="body_shape_entered" from="LeftHitArea" to="." method="_on_left_hit_area_body_shape_entered"]
+[connection signal="body_shape_entered" from="RightHitArea" to="." method="_on_right_hit_area_body_shape_entered"]

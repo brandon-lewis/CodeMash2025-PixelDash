@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://bspdjiiaafuvy"]
+[gd_scene load_steps=42 format=3 uid="uid://bspdjiiaafuvy"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_283o7"]
+[ext_resource type="Texture2D" uid="uid://p43qpes1ednn" path="res://Assets/Art/Pixel Adventure 1/Main Characters/Desappearing (96x96).png" id="2_bm20g"]
 [ext_resource type="Texture2D" uid="uid://tl2g675dn3v5" path="res://Assets/Art/Pixel Adventure 1/Main Characters/Mask Dude/Fall (32x32).png" id="3_21lln"]
 [ext_resource type="Texture2D" uid="uid://b7kakw0p8ye8v" path="res://Assets/Art/Pixel Adventure 1/Main Characters/Mask Dude/Idle (32x32).png" id="4_307g6"]
 [ext_resource type="Texture2D" uid="uid://bx6cbkt01bmox" path="res://Assets/Art/Pixel Adventure 1/Main Characters/Mask Dude/Jump (32x32).png" id="5_doxrh"]
@@ -8,6 +9,34 @@
 [ext_resource type="AudioStream" uid="uid://4qu5ndlkbt1u" path="res://Assets/Audio/jdwasabi_Sounds/Jump 1.wav" id="6_h3yod"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6epth"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us0wj"]
+atlas = ExtResource("2_bm20g")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v1us"]
+atlas = ExtResource("2_bm20g")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g80qs"]
+atlas = ExtResource("2_bm20g")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee38b"]
+atlas = ExtResource("2_bm20g")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj0ak"]
+atlas = ExtResource("2_bm20g")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x448j"]
+atlas = ExtResource("2_bm20g")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twutk"]
+atlas = ExtResource("2_bm20g")
+region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hej1d"]
 atlas = ExtResource("3_21lln")
@@ -113,6 +142,32 @@ region = Rect2(352, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_us0wj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v1us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g80qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee38b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj0ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x448j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twutk")
+}],
+"loop": false,
+"name": &"defeat",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hej1d")
 }],
 "loop": false,
@@ -215,7 +270,11 @@ shape = SubResource("CapsuleShape2D_6epth")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6hqts")
-animation = &"run"
+animation = &"defeat"
+frame = 6
+frame_progress = 1.0
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_h3yod")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

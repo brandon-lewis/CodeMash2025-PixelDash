@@ -1,10 +1,24 @@
 class_name Player
 extends CharacterBody2D
 
+signal defeated
+
 const BASE_MOVE_SPEED := 250
 const JUMP_FORCE := Globals.GRAVITY * 14
 
+var is_defeated := false
+
 func _physics_process(delta: float) -> void:
+	if not is_defeated: handle_movement()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("action") and is_on_floor():
+		velocity.y -= JUMP_FORCE
+		$JumpSound.play()
+
+
+func handle_movement() -> void:
 	# Shorthand for getting the right (positive) input minus the left (negative) input
 	var input_vector := Input.get_axis("left", "right")
 	
@@ -34,11 +48,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.play("idle")
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("action") and is_on_floor():
-		velocity.y -= JUMP_FORCE
-		$JumpSound.play()
-
-
 func collect_fruit(fruit:String) -> void:
 	print("Player collected %s" % fruit)
+
+
+func take_damage(amount:int) -> void:
+	is_defeated = true
+	$AnimatedSprite2D.play("defeat")
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if $AnimatedSprite2D.animation == 'defeat':
+		defeated.emit()

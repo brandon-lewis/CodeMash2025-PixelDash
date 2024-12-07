@@ -11,6 +11,7 @@ var fruit_maximums := {
 }
 
 @onready var hud : HUD = $HUD
+@onready var player := $Player
 
 func _ready() -> void:
 	for child in $FruitContainer.get_children():
@@ -19,6 +20,7 @@ func _ready() -> void:
 			child.collected.connect(handleFruitCollected)
 	hud.update_kiwi_count(0, fruit_maximums["Kiwi"])
 	hud.update_pineapple_count(0, fruit_maximums["Pineapple"])
+	player.defeated.connect(restart_level)
 
 
 # When any of the fruit emit their collected signal, we handle that signal by updating our fruit
@@ -31,3 +33,7 @@ func handleFruitCollected(fruitName:String) -> void:
 
 func _on_level_music_finished() -> void:
 	$LevelMusic.play()
+
+
+func restart_level() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Level/level.tscn")
