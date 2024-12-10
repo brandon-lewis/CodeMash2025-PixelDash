@@ -1,4 +1,7 @@
+class_name Level
 extends Node2D
+
+signal level_done(player_won:bool)
 
 var fruit_totals := {
 	"Kiwi": 0,
@@ -18,8 +21,6 @@ func _ready() -> void:
 		if child is Fruit:
 			fruit_maximums[child.fruit] += 1
 			child.collected.connect(handleFruitCollected)
-	hud.update_kiwi_count(0, fruit_maximums["Kiwi"])
-	hud.update_pineapple_count(0, fruit_maximums["Pineapple"])
 	player.defeated.connect(restart_level)
 
 
@@ -36,4 +37,4 @@ func _on_level_music_finished() -> void:
 
 
 func restart_level() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Level/level.tscn")
+	level_done.emit(false)
