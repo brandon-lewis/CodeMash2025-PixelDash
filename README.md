@@ -4,7 +4,7 @@ Listed below are the tools and art assets necessary for completing this session.
 
 Once you've downloaded Godot and the art assets, you are ready to go! There are no additional build steps or setup requirements beyond downloading.
 
-## 1 - Download Godot Engine (version 4.3)
+## 1 - Download Godot Engine (version 4.3; not the Mono version)
 Download Godot for free at: https://godotengine.org/download
 
 Godot is also available on Steam. Using Godot through Steam is not recommended approach as Steam will push automatic Major version updates, of which may not be backward compatible with your current version.
